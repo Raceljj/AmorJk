@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una Carta para Vos 💕</title>
+  
+  <!-- Fuentes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Iconos Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Canvas de fondo para corazones flotantes -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- REPRODUCTOR FLOTANTE CON LISTA DE MÚSICA -->
+  <div class="music-player-floating">
+    <button id="music-toggle" class="music-btn" aria-label="Reproducir/Pausar">
+      <i data-lucide="music"></i>
+    </button>
+    <div class="music-info">
+      <span id="song-title" class="song-title">Tema 1</span>
+      <span class="song-artist">Especial para vos bebe ✨</span>
+    </div>
+    <!-- Botón para pasar a la siguiente canción -->
+    <button id="next-song-btn" class="music-btn-next" aria-label="Siguiente canción" title="Siguiente canción">
+      <i data-lucide="skip-forward"></i>
+    </button>
+
+    <!-- Elemento de audio con la lista -->
+    <audio id="bg-audio" loop></audio>
+  </div>
+
+  <main class="main-container">
+
+    <!-- PANTALLA 1: ACCESO CON CONTRASEÑA -->
+    <section id="login-screen" class="envelope-screen">
+      <div class="login-card">
+        <div class="login-icon-container">
+          <i data-lucide="lock" class="lock-icon"></i>
+        </div>
+        <h2>Para ingresar... 💌</h2>
+        <p>Escribe tu nombre y la contraseña secreta</p>
+        
+        <form id="login-form">
+          <div class="input-group">
+            <input type="text" id="user-name" placeholder="Tu nombre" required autocomplete="off">
+          </div>
+          <div class="input-group">
+            <input type="password" id="user-password" placeholder="Contraseña secreta" required>
+          </div>
+          <button type="submit" class="action-btn">Entrar a la carta ✨</button>
+          <p id="error-msg" class="error-msg hidden">Mmm, esa no es la contraseña correcta 🥺</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- PANTALLA 2: SOBRE DE CARTA CERRADO (OCULTO AL INICIO) -->
+    <section id="envelope-screen" class="envelope-screen hidden">
+      <div class="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-pocket"></div>
+          <div class="envelope-letter-preview">
+            <p id="welcome-message">Para la persona más especial...</p>
+          </div>
+          <div class="envelope-seal" id="open-envelope-btn">
+            <i data-lucide="heart" class="heart-icon"></i>
+            <span>Tocar para abrir</span>
+          </div>
+        </div>
+      </div>
+      <p class="envelope-hint">Toca el sello para abrir tu carta</p>
+    </section>
+
+    <!-- SECCIÓN 2: CONTENIDO DE LA CARTA (SE MUESTRA AL ABRIR) -->
+    <div id="letter-content" class="letter-content hidden">
+
+      <!-- ENCABEZADO Y CONTADOR -->
+      <header class="hero-header">
+        <span class="badge">Especialmente para usted, mi niño hermoso</span>
+        <h1 class="main-title">Un rincón para recordarte cuánto te amo</h1>
+        <p class="subtitle">Porque no hace falta que sea una fecha especial para decirte lo importante que sos en mi vida.</p>
+      </header>
+
+      <!-- LA CARTA ESCRITA -->
+      <section class="paper-letter">
+        <div class="tape-corner top-left"></div>
+        <div class="tape-corner top-right"></div>
+
+        <h2 class="letter-heading">Hola, mi amooooooor... ❤️</h2>
+
+        <div class="letter-body">
+          <p>
+            Hay miradas que te cambian los días, y luego estás tú, que lograste convertirte en mi hogar favorito en cualquier parte del mundo. Desde que estás en mi vida, cada pequeño detalle tiene más color, las risas son más sinceras y mi corazón descansa sabiendo que te encontré a ti.</p>
+          <p>
+            Me encanta lo que somos cuando estamos juntos, la complicidad que tenemos y la paz que me das con solo un abrazo. Por eso sé que lo nuestro no necesita artificios, porque es auténtico y nace del alma.</p>
+          <p>
+            No te prometo una vida de película de Hollywood donde todo es perfecto y nunca discutimos. Te prometo algo mejor: que incluso en los días grises, o cuando estemos cansados, vas a tener en mí a alguien dispuesta a remar contigo, a escuchar tus rarezas y a seguir eligiéndote un millón de veces más.</p>
+          <p>
+            Te amo mucho y aveces no hay palabras suficientes para describirlo, pero nunca olvides que yo te amo con toda mi alma.</p>
+        </div>
+        <div class="letter-signature">
+          <span>Con todo mi amor,</span>
+          <p class="signature-name">Tu Princesa ❤️</p>
+        </div>
+      </section>
+
+      <!-- GALERÍA POLAROID -->
+      <section class="gallery-section">
+        <h2 class="section-title"><i data-lucide="camera"></i> Nuestros Momentos</h2>
+        <p class="section-subtitle">Pequeños recuerdos que guardo en el alma</p>
+
+        <div class="polaroid-grid">
+          <div class="polaroid-card">
+            <div class="tape"></div>
+            <div class="polaroid-img">
+              <img src="img/imagen1.jpeg" alt="Foto juntos 1">
+            </div>
+            <p class="polaroid-caption">Esa sonrisa que me enamora ✨</p>
+          </div>
+
+          <div class="polaroid-card rotate-right">
+            <div class="tape"></div>
+            <div class="polaroid-img">
+              <img src="img/imagen2.jpeg" alt="Foto juntos 2">
+            </div>
+            <p class="polaroid-caption">Un día inolvidable 🤍</p>
+          </div>
+
+          <div class="polaroid-card rotate-left">
+            <div class="tape"></div>
+            <div class="polaroid-img">
+              <img src="img/imagen3.jpeg" alt="Foto juntos 3">
+            </div>
+            <p class="polaroid-caption">Siempre así, juntitos 🌷</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TARJETAS DE RAZONES -->
+      <section class="reasons-section">
+        <h2 class="section-title"><i data-lucide="rose"></i> Te amo ...</h2>
+        <p class="section-subtitle">Haz clic en cada tarjeta para girarla</p>
+
+        <div class="cards-grid">
+          <!-- TARJETA 1 -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('img/foto1.jpeg');"></div>
+              <div class="flip-card-back">
+                <p>Por la forma única en la que me hacés reír, incluso en los días más difíciles.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TARJETA 2 -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('img/foto2.jpeg');"></div>
+              <div class="flip-card-back">
+                <p>Por la tranquilidad y paz que me transmite tu compañía siempre.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TARJETA 3 -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" style="background-image: url('img/foto1.jpeg');"></div>
+              <div class="flip-card-back">
+                <p>Porque con vos soy libre de ser 100% yo misma sin ningún temor.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACCIONES DIVERTIDAS -->
+      <section class="interactive-section">
+        <h2 class="section-title"><i data-lucide="heart"></i>Mucho amor para ti</h2>
+
+        <div class="interactive-buttons">
+          <button id="kiss-btn" class="action-btn">
+            <i></i> Besos💋
+          </button>
+          <button id="hug-btn" class="action-btn outline">
+            <i></i> Abrazos🫂
+          </button>
+        </div>
+
+        <!-- PREGUNTA JUGUETONA -->
+        <div class="playful-box">
+          <h3>¿Cuánto me querés hoy? 💕</h3>
+          <div class="playful-actions">
+            <button id="love-a-lot" class="action-btn sm">¡Muchísimo! Infinito ❤️</button>
+            <button id="love-no" class="action-btn outline sm runaway-btn">Mmm, un poquito 😜</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PIE DE PÁGINA -->
+      <footer class="footer">
+        <p>Hecho con todo el amor del mundo para vos 💕</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
